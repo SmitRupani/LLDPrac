@@ -1,15 +1,15 @@
 public class OrderService {
     TaxCalculator tax;
-    EmailClient email;
+    NotificationClient client;
 
-    public OrderService(TaxCalculator tax, EmailClient email) {
+    public OrderService(TaxCalculator tax, NotificationClient client) {
         this.tax = tax;
-        this.email = email;
+        this.client = client;
     }
 
     void checkout(String customerEmail, double subtotal) {
         double total = tax.totalWithTax(subtotal);
-        email.send(customerEmail, "Thanks! Your total is " + total);
+        client.send(customerEmail, "Thanks! Your total is " + total);
         System.out.println("Order stored (pretend DB).");
     }
 }
